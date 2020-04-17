@@ -13,8 +13,8 @@ bootJar {
     version =  '1.1.1'
 }
 
-sourceCompatibility = 1.11
-targetCompatibility = 1.11
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 repositories {
     mavenCentral()
@@ -24,7 +24,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     runtimeOnly 'mysql:mysql-connector-java'
-//	runtimeOnly 'com.h2database:h2'
+    //runtimeOnly 'com.h2database:h2'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
@@ -32,5 +32,8 @@ dependencies {
 }
 
 test {
-    ignoreFailures = true
+    systemProperty 'spring.profiles.active', 'test'
+    // Gradle cannot read env vars from properties files, so set them here.
+    //  environment "DB_USER", System.getenv('DB_USER')
+    //  environment "DB_PASSWORD", System.getenv('DB_PASSWORD')
 }
