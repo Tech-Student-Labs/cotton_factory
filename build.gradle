@@ -34,7 +34,7 @@ dependencies {
 test {
     systemProperty 'spring.profiles.active', 'test'
     // Gradle cannot read env vars from properties files, so set them here.
-      environment "Jaktau", System.getenv('DB_USER')
-      environment "Number1Pasword!", System.getenv('DB_PASSWORD')
+      environment "DB_USER", System.getenv('DB_USER')
+      environment "DB_PASSWORD", System.getenv('DB_PASSWORD')
     useJUnitPlatform()
 }
