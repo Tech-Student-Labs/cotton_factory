@@ -3,10 +3,10 @@ package com.cottonfactory.products.controllers;
 import com.cottonfactory.products.entities.Jacket;
 import com.cottonfactory.products.services.JacketService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/products/jackets")
@@ -15,6 +15,7 @@ public class JacketController {
     public JacketController(JacketService jacketService) {
         this.jacketService = jacketService;
     }
+    //    POST. /api/products/jackets
     @PostMapping
     public ResponseEntity<Jacket> createJacket(@RequestBody Jacket jacket) {
         Jacket saved;
@@ -25,10 +26,18 @@ public class JacketController {
         }
         return ResponseEntity.ok(saved);
     }
-
-//    POST. /api/products/jackets
-//    GET /api/products/jackets (list)
-//    GET /api/products/jackets/:id
-//    PATCH /api/products/jackets/:id
-//    PUT /api/products/jackets/:id
+    //    GET /api/products/jackets (list)
+    @GetMapping
+    public ResponseEntity<List<Jacket>> getAllJackets() {
+        List<Jacket> jackets = new ArrayList();
+        try {
+            jackets = jacketService.findAllJackets();
+        } catch(Exception e) {
+            return ResponseEntity.badRequest().header("message", e.getMessage()).build();
+        }
+        return ResponseEntity.ok(jackets);
+    }
+    //    GET /api/products/jackets/:id
+    //    PATCH /api/products/jackets/:id
+    //    PUT /api/products/jackets/:id
 }
