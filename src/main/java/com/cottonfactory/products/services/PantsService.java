@@ -31,4 +31,13 @@ public class PantsService {
         }
     }
 
+    public boolean deleteById(Long id) {
+        if(pantsRepository.findById(id).isPresent()){
+            pantsRepository.deleteById(id);
+            return true;
+        }else{
+            throw new RuntimeException("Pants not found");
+        }
+    }
+
 }

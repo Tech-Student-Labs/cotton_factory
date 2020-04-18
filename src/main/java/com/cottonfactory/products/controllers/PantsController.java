@@ -30,4 +30,9 @@ public class PantsController {
         return pantsService.getById(id);
     }
 
+    @DeleteMapping("/api/pants/{id}")
+    public boolean deleteById(@PathVariable Long id){
+        return pantsService.deleteById(id);
+    }
+
 }
