@@ -47,6 +47,8 @@ During this exercise your workflow should look like this:
 
 Once your PR is submitted, automated tests will check that your code works.
 
+![](https://imgur.com/zpLEc3R)
+
 Part of the challenge is that during code reviews, you'll need to simultaneously continue working on your next feature, making sure you're keeping your project up-to-date as things are merged by everyone else! This is part of the process of continuous integration.
 
 Instructors will frequently update the project and version tags as the features are developed to deploy the service at the end of the exercise. 
@@ -67,7 +69,7 @@ This is an opportunity to practice your dev workflow. Your role in the CI/CD pro
 
 **Do not continue until you have forked this repo and have it open in your IDE.**
 
-Remeber that EVERYONE IN THE CLASS IS USING THIS CODE BASE. So your settings need to match everyone else's or your code will cause problems for everyone!
+Remember that EVERYONE IN THE CLASS IS USING THIS CODE BASE. So your settings need to match everyone else's or your code will cause problems for everyone!
 
 #### Create the Database(s)
 
@@ -104,9 +106,7 @@ Happy coding!
 
 ## Troubleshooting
 
-<p align="center">
 ![](https://i.redd.it/ov5ahw52zet41.jpg)
-</p>
 
 You may also find it handy to update (temporarily)  `build.gradle` to ensure Gradle can grab the environment variables when building the app. Gradle cannot read your environment on it's own so its possible for `gradle test` to fail because of this.
 
