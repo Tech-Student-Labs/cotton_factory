@@ -2,8 +2,9 @@
 .gradle
 build
 .idea
-application.properties
-
+application-dev.properties
+application-prod.properties
+application-test.properties
 # Compiled class file
 *.class
 
