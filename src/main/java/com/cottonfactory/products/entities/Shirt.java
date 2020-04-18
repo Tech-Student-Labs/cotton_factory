@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.math.BigDecimal;
+import java.util.Objects;
 
 @Entity
 public class Shirt {
@@ -104,6 +105,42 @@ public class Shirt {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Shirt shirt = (Shirt) o;
+        return getSleeve() == shirt.getSleeve() &&
+                getNeck() == shirt.getNeck() &&
+                isLongSleeve() == shirt.isLongSleeve() &&
+                Objects.equals(getId(), shirt.getId()) &&
+                getType() == shirt.getType() &&
+                Objects.equals(getSize(), shirt.getSize()) &&
+                Objects.equals(getCustomSize(), shirt.getCustomSize()) &&
+                Objects.equals(getColor(), shirt.getColor()) &&
+                Objects.equals(getPrice(), shirt.getPrice());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getType(), getSleeve(), getNeck(), getSize(), getCustomSize(), getColor(), isLongSleeve(), getPrice());
+    }
+
+    @Override
+    public String toString() {
+        return "Shirt{" +
+                "id=" + id +
+                ", type=" + type +
+                ", sleeve=" + sleeve +
+                ", neck=" + neck +
+                ", size='" + size + '\'' +
+                ", customSize='" + customSize + '\'' +
+                ", color='" + color + '\'' +
+                ", longSleeve=" + longSleeve +
+                ", price=" + price +
+                '}';
     }
 
     public enum TYPE{

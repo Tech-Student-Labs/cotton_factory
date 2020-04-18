@@ -32,7 +32,7 @@ public class ShirtServiceTest {
     void postShirt(){
         ShirtService service = new ShirtService(shirtRepository);
         Shirt expected = new Shirt(Shirt.TYPE.TEE, 3, 3, "M", "customSize", "Red", true, BigDecimal.valueOf(30.5));
-        Shirt input = new Shirt();
+        Shirt input = new Shirt(expected.getType(), expected.getSleeve(), expected.getNeck(), expected.getSize(), expected.getCustomSize(), expected.getColor(), expected.isLongSleeve(), expected.getPrice());
         input.setType(expected.getType());
         expected.setId(1L);
         when(shirtRepository.save(any(Shirt.class))).thenReturn(expected);
