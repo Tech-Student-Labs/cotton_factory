@@ -1,5 +1,6 @@
 package com.cottonfactory.products.services;
 
+import com.cottonfactory.products.entities.Shirt;
 import com.cottonfactory.products.repositories.ShirtRepository;
 import org.springframework.stereotype.Service;
 
@@ -9,5 +10,9 @@ public class ShirtService {
 
     public ShirtService(ShirtRepository shirtRepository) {
         this.shirtRepository = shirtRepository;
+    }
+
+    public Shirt postShirt(Shirt input) {
+        return shirtRepository.save(input);
     }
 }
