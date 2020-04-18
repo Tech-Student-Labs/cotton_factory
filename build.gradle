@@ -20,10 +20,9 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     runtimeOnly 'mysql:mysql-connector-java'
     runtimeOnly 'com.h2database:h2'
+    testCompile group: 'com.h2database', name: "h2"
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
-        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
-    implementation 'junit:junit:4.12'
 }
 test {
     systemProperty 'spring.profiles.active', 'test'
@@ -32,3 +31,4 @@ test {
     // environment "DB_PASSWORD", System.getenv('DB_PASSWORD')
     useJUnitPlatform()
 }
+
