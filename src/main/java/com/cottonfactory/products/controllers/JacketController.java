@@ -3,10 +3,11 @@ package com.cottonfactory.products.controllers;
 import com.cottonfactory.products.entities.Jacket;
 import com.cottonfactory.products.services.JacketService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/products/jackets")
@@ -15,6 +16,7 @@ public class JacketController {
     public JacketController(JacketService jacketService) {
         this.jacketService = jacketService;
     }
+    //    POST. /api/products/jackets
     @PostMapping
     public ResponseEntity<Jacket> createJacket(@RequestBody Jacket jacket) {
         Jacket saved;
@@ -25,10 +27,29 @@ public class JacketController {
         }
         return ResponseEntity.ok(saved);
     }
+    //    GET /api/products/jackets (list)
+    @GetMapping
+    public ResponseEntity<List<Jacket>> getAllJackets() {
+        List<Jacket> jackets = new ArrayList();
+        try {
+            jackets = jacketService.findAllJackets();
+        } catch(Exception e) {
+            return ResponseEntity.badRequest().header("message", e.getMessage()).build();
+        }
+        return ResponseEntity.ok(jackets);
+    }
+    //    GET /api/products/jackets/:id
+    @GetMapping("/{id}")
+    public ResponseEntity<Optional<List<Jacket>>> getJacketById(@PathVariable Long id) {
+        List<Jacket> jackets = new ArrayList();
 
-//    POST. /api/products/jackets
-//    GET /api/products/jackets (list)
-//    GET /api/products/jackets/:id
-//    PATCH /api/products/jackets/:id
-//    PUT /api/products/jackets/:id
+        try {
+            jacketService.findById(id).map(jacket -> jackets.add(jacket));
+        } catch(Exception e) {
+            return ResponseEntity.badRequest().header("message", e.getMessage()).build();
+        }
+        return ResponseEntity.ok(Optional.of(jackets));
+    }
+    //    PATCH /api/products/jackets/:id
+    //    PUT /api/products/jackets/:id
 }
