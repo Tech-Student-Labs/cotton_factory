@@ -69,7 +69,7 @@ This is an opportunity to practice your dev workflow. Your role in the CI/CD pro
 
 **Do not continue until you have forked this repo and have it open in your IDE.**
 
-Remember that EVERYONE IN THE CLASS IS USING THIS CODE BASE. So your settings need to match everyone else's or your code will cause problems for everyone!
+REMEMBER that EVERYONE IN THE CLASS IS USING THIS CODE BASE. So your settings need to match everyone else's or your code will cause problems for everyone!
 
 #### Create the Database(s)
 
