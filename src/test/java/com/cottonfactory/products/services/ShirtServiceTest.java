@@ -30,6 +30,7 @@ public class ShirtServiceTest {
 
     @Test
     void postShirt(){
+        ShirtService service = new ShirtService(shirtRepository);
         Shirt expected = new Shirt(Shirt.TYPE.TEE, 3, 3, "M", "customSize", "Red", true, BigDecimal.valueOf(30.5));
         Shirt input = new Shirt();
         input.setType(expected.getType());
