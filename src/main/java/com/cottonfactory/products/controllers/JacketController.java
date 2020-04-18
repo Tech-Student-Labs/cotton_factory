@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/jackets")
+@RequestMapping("/api/products/jackets")
 public class JacketController {
     JacketService jacketService;
     public JacketController(JacketService jacketService) {
@@ -25,4 +25,10 @@ public class JacketController {
         }
         return ResponseEntity.ok(saved);
     }
+
+//    POST. /api/products/jackets
+//    GET /api/products/jackets (list)
+//    GET /api/products/jackets/:id
+//    PATCH /api/products/jackets/:id
+//    PUT /api/products/jackets/:id
 }

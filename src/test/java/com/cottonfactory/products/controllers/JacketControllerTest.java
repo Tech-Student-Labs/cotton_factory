@@ -33,7 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
 class JacketControllerTest {
-    private String url = "/api/jackets";
+    private String url = "/api/products/jackets";
 
     @Autowired
     MockMvc mvc;
