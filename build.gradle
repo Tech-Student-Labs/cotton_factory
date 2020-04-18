@@ -4,36 +4,29 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 //    id 'com.google.cloud.tools.jib' version '1.8.0'
 }
-
 group 'com.cottonfactory'
 version '1.0-SNAPSHOT'
-
 bootJar {
     baseName = 'cotton-factory-products'
     version =  '1.1.1'
 }
-
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
-
 repositories {
     mavenCentral()
 }
-
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     runtimeOnly 'mysql:mysql-connector-java'
-    testCompile group: 'com.h2database', name: "h2"
+    runtimeOnly 'com.h2database:h2'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
     }
-    implementation 'junit:junit:4.12'
 }
-
 test {
     systemProperty 'spring.profiles.active', 'test'
     // Gradle cannot read env vars from properties files, so set them here.
-      environment "DB_USER", System.getenv('DB_USER')
-      environment "DB_PASSWORD", System.getenv('DB_PASSWORD')
+    environment "DB_USER", System.getenv('DB_USER')
+    environment "DB_PASSWORD", System.getenv('DB_PASSWORD')
     useJUnitPlatform()
 }
