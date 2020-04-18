@@ -46,6 +46,7 @@ public class PantsControllerTest {
     public void getAllPants_ShouldReturnsPants() throws Exception {
         pants = new Pants(25, 30, "Medium", "Blue", "Abc Abc", BigDecimal.valueOf(12.99));
         pants.setId(1L);
+        String url = "/api/pants/";
         when(pantsService.getAll()).thenReturn(Arrays.asList(pants));
         mvc.perform(get("/api/pants")
                 .contentType(MediaType.APPLICATION_JSON))
@@ -55,9 +56,10 @@ public class PantsControllerTest {
     }
 
     @Test
-    public void savePants_ShouldReturnPants() throws Exception {
+    public void savePants_ShouldReturnsPants() throws Exception {
         pants = new Pants(25, 30, "Medium", "Blue", "Abc Abc", BigDecimal.valueOf(12.99));
         pants.setId(1L);
+        String url = "/api/pants/";
         when(pantsService.save(ArgumentMatchers.any(Pants.class))).thenReturn(pants);
         mvc.perform(post("/api/pants")
                 .content(objectMapper.writeValueAsString(pants))
@@ -65,7 +67,18 @@ public class PantsControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(pants.getId()));
 
+    }
 
+    @Test
+    public void getPantsById_ShouldReturnsPants() throws Exception{
+        pants = new Pants(25, 30, "Medium", "Blue", "Abc Abc", BigDecimal.valueOf(12.99));
+        pants.setId(1L);
+        String url = "/api/pants/" + pants.getId();
+        when(pantsService.getById(ArgumentMatchers.any(Long.class))).thenReturn(pants);
+        mvc.perform(get(url)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(pants.getId()));
     }
 
 }

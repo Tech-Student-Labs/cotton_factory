@@ -19,8 +19,16 @@ public class PantsService {
         return pantsRepository.findAll();
     }
 
-
     public Pants save(Pants pants) {
         return pantsRepository.save(pants);
     }
+
+    public Pants getById(Long id) {
+        if(pantsRepository.findById(id).isPresent()){
+            return pantsRepository.findById(id).get();
+        }else{
+            throw new RuntimeException("Pants not found");
+        }
+    }
+
 }
