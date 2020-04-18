@@ -20,4 +20,7 @@ public class PantsService {
     }
 
 
+    public Pants save(Pants pants) {
+        return pantsRepository.save(pants);
+    }
 }
