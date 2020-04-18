@@ -36,8 +36,7 @@ public class PantsControllerTest {
     @MockBean
     PantsService pantsService;
 
-    @Autowired
-    ObjectMapper objectMapper;
+    ObjectMapper objectMapper = new ObjectMapper();
 
     Pants pants;
 
