@@ -11,7 +11,6 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-// FIXME: 'RunWith' shouldn't be required, but without it Mockmvc is throwing 'NullPointer'
 @SpringBootTest
 @AutoConfigureMockMvc
 public class OrdersControllerTestCase {
