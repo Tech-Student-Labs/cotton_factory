@@ -27,6 +27,9 @@ dependencies {
     testCompile group: 'com.h2database', name: "h2"
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
     }
+    implementation 'junit:junit:4.12'
+    compile group: 'org.modelmapper', name: 'modelmapper', version:  '2.3.7'
+
 }
 
 test {
