@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/products/jackets")
@@ -38,6 +39,17 @@ public class JacketController {
         return ResponseEntity.ok(jackets);
     }
     //    GET /api/products/jackets/:id
+    @GetMapping("/{id}")
+    public ResponseEntity<Optional<List<Jacket>>> getJacketById(@PathVariable Long id) {
+        List<Jacket> jackets = new ArrayList();
+
+        try {
+            jacketService.findById(id).map(jacket -> jackets.add(jacket));
+        } catch(Exception e) {
+            return ResponseEntity.badRequest().header("message", e.getMessage()).build();
+        }
+        return ResponseEntity.ok(Optional.of(jackets));
+    }
     //    PATCH /api/products/jackets/:id
     //    PUT /api/products/jackets/:id
 }

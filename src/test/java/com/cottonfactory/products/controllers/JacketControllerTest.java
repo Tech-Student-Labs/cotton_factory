@@ -19,6 +19,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -88,7 +89,30 @@ class JacketControllerTest {
                 .andExpect(jsonPath("$", hasSize(jackets.size())));
     }
 
-//    GET /api/products/jackets/:id
+    //    GET /api/products/jackets/:id
+    @Test
+    void getAllJacketsById() throws Exception {
+        Jacket jacket = new Jacket();
+        jacket.setId(1L);
+        jacket.setSize(Size.SMALL);
+        jacket.setColor("Red");
+        jacket.setSeason(Season.SPRING);
+        jacket.setAdultSize(true);
+        jacket.setPrice(new BigDecimal(10.00));
+        jacket.setStyle(Style.HOODED);
+        when(jacketService.findById(jacket.getId())).thenReturn(Optional.of(jacket));
+        mvc.perform(get(url +"/" + jacket.getId()))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].id").value(jacket.getId()));
+    }
+    @Test
+    void returnsNull() throws Exception {
+        when(jacketService.findById(2L)).thenReturn(null);
+        mvc.perform(get(url + "/2"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$").value(0));
+    }
 //    PATCH /api/products/jackets/:id
+    
 //    PUT /api/products/jackets/:id
 }
